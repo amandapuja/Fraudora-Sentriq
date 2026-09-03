@@ -1,4 +1,4 @@
-# TrustLens x Fraudora Sentriq TraceX (Gabungan BE + FE)
+# Fraudora Sentriq TraceX (Gabungan BE + FE)
 
 Proyek ini adalah hasil **penggabungan**:
 
