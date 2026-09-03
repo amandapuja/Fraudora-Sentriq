@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #dce4f7 0%, #e8d8f5 50%, #d4e8f7 100%);
+  background-attachment: fixed;
+  color: #2d3561;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection { background: rgba(139,92,246,0.25); color: #2d3561; }
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: rgba(220,228,247,0.5); }
+::-webkit-scrollbar-thumb { background: rgba(139,92,246,0.35); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(139,92,246,0.55); }
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Hero orb drift ─────────────────────────────────────────────────── */
+@keyframes orb-drift-1 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33%      { transform: translate(24px,-18px) scale(1.06); }
+  66%      { transform: translate(-16px,12px) scale(0.96); }
+}
+@keyframes orb-drift-2 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  40%      { transform: translate(-20px,16px) scale(1.04); }
+  75%      { transform: translate(18px,-10px) scale(0.97); }
+}
+
+/* ─── Aurora title animation ─────────────────────────────────────────── */
+@keyframes aurora-shift {
+  0%   { background-position: 0% 50%; }
+  25%  { background-position: 50% 100%; }
+  50%  { background-position: 100% 50%; }
+  75%  { background-position: 50% 0%; }
+  100% { background-position: 0% 50%; }
+}
+
+.aurora-title {
+  background: linear-gradient(
+    270deg,
+    #22d3ee,
+    #a78bfa,
+    #f472b6,
+    #818cf8,
+    #34d399,
+    #06b6d4,
+    #c084fc,
+    #22d3ee
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: aurora-shift 24s ease infinite;
+}
+
+/* Slower, more subtle variant for subheadings */
+.aurora-title-slow {
+  background: linear-gradient(
+    270deg,
+    #8b5cf6,
+    #06b6d4,
+    #ec4899,
+    #6366f1,
+    #a78bfa,
+    #22d3ee,
+    #8b5cf6
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: aurora-shift 32s ease infinite;
+}
+
+/* ─── Gradient text shimmer (legacy) ────────────────────────────────── */
+@keyframes grad-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.fst-grad-text {
+  background-size: 200% auto;
+  animation: grad-shift 4s ease infinite;
+}
+
+/* ─── Card hover lift ─────────────────────────────────────────────────  */
+.fst-card {
+  transition: transform 0.22s cubic-bezier(.4,0,.2,1),
+              box-shadow 0.22s cubic-bezier(.4,0,.2,1),
+              border-color 0.22s ease;
+}
+.fst-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(100,80,200,0.14);
+}
+
+/* ─── Button press ────────────────────────────────────────────────────── */
+.fst-btn {
+  transition: transform 0.13s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+.fst-btn:hover  { transform: translateY(-1px); opacity: 0.92; }
+.fst-btn:active { transform: translateY(0) scale(0.97); }
+
+/* ─── Nav link active underline slide ────────────────────────────────── */
+.fst-navlink {
+  position: relative;
+  transition: color 0.18s ease;
+}
+.fst-navlink::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0; right: 0;
+  height: 2px;
+  border-radius: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.22s cubic-bezier(.4,0,.2,1);
+}
+.fst-navlink:hover::after,
+.fst-navlink.active::after { transform: scaleX(1); }
+
+/* ─── Graph node glow breathe ────────────────────────────────────────── */
+@keyframes monitor-breathe {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.25); }
+}
+.graph-monitor-dot {
+  animation: monitor-breathe 1.8s ease-in-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+/* ─── LIVE label subtle glow ─────────────────────────────────────────── */
+@keyframes live-label-glow {
+  0%, 100% { opacity: 0.7; }
+  50%       { opacity: 1; }
+}
+.graph-live-label { animation: live-label-glow 3s ease-in-out infinite; }
+
+/* ─── Alert row pulse (high risk) ────────────────────────────────────── */
+@keyframes alert-pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(239,68,68,0); }
+  50%      { box-shadow: 0 0 0 4px rgba(239,68,68,0.12); }
+}
+.fst-alert-high {
+  animation: alert-pulse 2.4s ease infinite;
+}
+
+/* ─── Graph node entrance ─────────────────────────────────────────────── */
+@keyframes node-in {
+  from { opacity: 0; transform: scale(0.4); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ─── Smooth tab content switch ──────────────────────────────────────── */
+@keyframes tab-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fst-tab-content { animation: tab-in 0.28s cubic-bezier(.4,0,.2,1); }
+
+/* ─── Input focus ring ───────────────────────────────────────────────── */
+.fst-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(139,92,246,0.18);
+}
+
+/* ─── Modal backdrop entrance ────────────────────────────────────────── */
+@keyframes backdrop-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ─── Stagger fade for list items ────────────────────────────────────── */
+@keyframes item-in {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ─── Page-level theme transition ────────────────────────────────────── */
+* { transition: background-color 0.3s ease, border-color 0.25s ease, color 0.2s ease; }
+/* Exceptions — don't transition things that shouldn't */
+svg *, canvas, img, video { transition: none !important; }
+.fst-btn, .fst-card, .fst-navlink { transition-property: transform, box-shadow, opacity, border-color, color !important; }
+.fst-label-serif { font-family: 'Playfair Display', serif; }

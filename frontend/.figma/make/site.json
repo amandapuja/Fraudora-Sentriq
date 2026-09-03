@@ -1,0 +1,10 @@
+{
+  "description": "This web application generates customized prompts for users, enhancing creativity and productivity for writers, marketers, and content creators.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
