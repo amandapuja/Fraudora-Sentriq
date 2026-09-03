@@ -534,7 +534,7 @@ function Navbar() {
   ]
 
   return (
-    <nav style={{
+    <nav className="marketing-nav" style={{
       position: "fixed", top: 16, left: 16, right: 16, zIndex: 100,
       maxWidth: 1280, margin: "0 auto",
       background: T.navBg,
@@ -552,7 +552,7 @@ function Navbar() {
           <WordMark size={14} showSub />
         </a>
 
-        <div style={{ display: "flex", alignItems: "center", gap: 32 }}>
+        <div className="marketing-links" style={{ display: "flex", alignItems: "center", gap: 32 }}>
           {links.map(l => (
             <a key={l.href} href={l.href} style={{ fontSize: 13, color: T.textSub,
               textDecoration: "none", fontWeight: 500 }}>
@@ -561,7 +561,7 @@ function Navbar() {
           ))}
         </div>
 
-        <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+        <div className="marketing-actions" style={{ display: "flex", gap: 10, alignItems: "center" }}>
           <button onClick={() => setView("login")} style={{ fontSize: 13, fontWeight: 600, color: T.violet,
             background: T.violetDim, border: `1px solid ${T.borderHi}`, padding: "7px 18px",
             borderRadius: 10, cursor: "pointer", fontFamily: "inherit" }}>
@@ -630,7 +630,7 @@ function DashboardNavbar({ activeTab, setActiveTab }: {
   const user = auth.user
 
   return (
-    <nav style={{
+    <nav className="dashboard-nav" style={{
       position: "sticky", top: 0, zIndex: 50,
       background: T.navBg, backdropFilter: T.blur, WebkitBackdropFilter: T.blur,
       borderBottom: `1px solid ${T.border}`,
@@ -651,7 +651,7 @@ function DashboardNavbar({ activeTab, setActiveTab }: {
         </div>
 
         {/* Center: tabs */}
-        <div style={{ display: "flex", gap: 2, overflow: "auto" }}>
+        <div className="dashboard-tabs" style={{ display: "flex", gap: 2, overflow: "auto" }}>
           {tabs.map(t => (
             <button key={t.id} onClick={() => setActiveTab(t.id)}
               style={{ fontSize: 12, fontWeight: 600, padding: "5px 14px", borderRadius: 8,
@@ -2510,7 +2510,7 @@ function LoginPage() {
   ]
 
   return (
-    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center",
+    <div className="login-shell" style={{ minHeight: "100vh", display: "flex", alignItems: "center",
       position: "relative", overflow: "hidden", background: G.pageBg }}>
       <div style={{ position: "absolute", top: "10%", left: "5%", width: 500, height: 500,
         background: `radial-gradient(circle, ${T.violet}1e 0%, transparent 65%)`, pointerEvents: "none" }} />
@@ -2540,11 +2540,11 @@ function LoginPage() {
         <ThemeToggle />
       </div>
 
-      <div style={{ width: "100%", maxWidth: 1100, margin: "0 auto", padding: "100px 28px 60px",
+      <div className="login-grid" style={{ width: "100%", maxWidth: 1100, margin: "0 auto", padding: "100px 28px 60px",
         display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
 
         {/* Left benefits */}
-        <div>
+        <div className="login-benefits">
           <div style={{ marginBottom: 10 }}>
             <Tag color={T.indigo}>AKSES ANALYST</Tag>
           </div>
@@ -2571,7 +2571,7 @@ function LoginPage() {
         </div>
 
         {/* Right form */}
-        <div>
+        <div className="login-form">
           <GlassCard style={{ padding: 32, maxWidth: 420, margin: "0 auto", animation: "fadeInUp 0.4s ease" }}>
             {mode === "login" ? (
               <>
@@ -2788,11 +2788,11 @@ function DashboardInner({ activeTab, setActiveTab }: { activeTab: string; setAct
   const userName = auth.user?.name ?? (auth.type === "guest" ? "Tamu" : "Analyst")
 
   return (
-    <div style={{ minHeight: "100vh", background: G.pageBg, backgroundAttachment: "fixed", color: T.text }}>
+    <div className="dashboard-shell" style={{ minHeight: "100vh", background: G.pageBg, backgroundAttachment: "fixed", color: T.text }}>
       <DashboardNavbar activeTab={activeTab} setActiveTab={setActiveTab} />
       <GuestBanner />
 
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "32px 28px", animation: "fadeInUp 0.35s ease" }}>
+      <div className="dashboard-content" style={{ maxWidth: 1280, margin: "0 auto", padding: "32px 28px", animation: "fadeInUp 0.35s ease" }}>
         {/* Welcome + live status */}
         <div style={{ marginBottom: 20, display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 12 }}>
           <div>
